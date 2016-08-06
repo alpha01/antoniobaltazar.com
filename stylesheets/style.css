@@ -1,0 +1,169 @@
+
+#container {
+	font-size: 75%;
+	color: #222;
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	vertical-align: baseline;
+	width: 955px;
+}
+
+body {
+	background: #443122;
+}
+
+header {
+	padding-top: 20px;
+}
+
+header img {
+	padding: 1em;
+}
+
+section {
+	margin-top: 1em;
+	font-size: 120%;
+	padding: 20px;
+	background: #D9D3BD;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.75em;
+    font-weight: normal;
+}
+
+article p, article h4, article h3, article a {
+	display: inline;
+}
+
+article p:after, article h4:after, article h3:after, article a:after {
+	content:"\000A";
+    white-space: pre;
+}
+
+
+/* Links */
+
+a {
+	color: #09c;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #069;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #069;
+}
+
+
+/* Navigation */
+nav {
+	float: right;
+	background: #D9D3BD;
+	padding: 0 0.7em;
+	white-space: nowrap;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li {
+	list-style-type: none;
+	display: inline-block;
+	padding: 0.2em 0;
+}
+
+nav ul li a {
+	padding: 0 9.5px;
+	font-weight: bold;
+}
+
+nav ul li a:visited {
+	color: #09c;
+}
+
+nav ul li a:hover {
+	text-decoration: underline;
+}
+
+a.sign_up_button {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+	width: 190px;
+	color: #fff;
+	background: #006400;
+	font-size: 150%;
+	font-weight: bold;
+	padding: 20px;
+}
+
+.round {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+img.round {
+	-moz-border-radius: 20.3px;
+	-webkit-border-radius: 20.3px;
+	border-radius: 20.3px;
+}
+
+/* Resume */
+table {
+	text-align: left;
+	text-decoration: none;
+	width: 100%;
+}
+
+table td {
+	background: #D9D3BD !important;
+}
+
+table.work-experience td {
+	width: 65%;
+	font-weight: bold;
+}
+
+table.tony-skills td:first-child {
+	font-weight: bold;
+}
+
+ul {
+	margin: 0;
+}
+ul:after {
+	content:"\000A";
+    white-space: pre;
+}
+
+
+/* Footer */
+footer {
+	text-align: center;
+	margin-top: 10px;
+	width: 710px;
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+	padding-bottom: 20px;
+}
+
+footer nav {
+	float: none;
+}
+
+footer small, footer a {
+	color: #d9d3bd;
+}
