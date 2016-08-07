@@ -4,7 +4,7 @@
 	color: #222;
 	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 	line-height: 1.5;
-	margin: 0 auto;
+	margin: 0 auto !important;
 	padding: 0;
 	border: 0;
 	vertical-align: baseline;

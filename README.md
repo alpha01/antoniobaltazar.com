@@ -2,4 +2,4 @@
 
 www.antoniobaltazar.com
 
-In case you're wondering, I'm not a Web Developer :3
+In case you're wondering, I'm not a Web Developer. I apologize :3
