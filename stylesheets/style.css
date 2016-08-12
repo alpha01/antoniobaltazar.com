@@ -30,17 +30,21 @@ section {
 	background: #D9D3BD;
 }
 
-h2 {
+h1 {
     font-size: 2em;
     margin-bottom: 0.75em;
     font-weight: normal;
 }
 
-article p, article h4, article h3, article a {
+h2 {
+	font-size: 1.17em;
+}
+
+article p, article h2, article a {
 	display: inline;
 }
 
-article p:after, article h4:after, article h3:after, article a:after {
+article p:after, article h2:after, article a:after {
 	content:"\000A";
     white-space: pre;
 }
