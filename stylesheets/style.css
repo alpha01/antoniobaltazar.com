@@ -50,12 +50,14 @@ article p:after, article h2:after, article a:after {
 }
 
 pre {
+    white-space: pre-wrap;
     word-wrap: break-word;
     line-height: 140%;
     padding: 2% 2.5%;
     background: #FFF;
     font-size: 0.8em;
     color: #333;
+    max-width: 40%;
 }
 
 /* Links */
