@@ -22,6 +22,9 @@ header {
 header img {
 	padding: 1em;
 }
+header img:hover {
+	transform: scale(1.2);
+}
 
 section {
 	margin-top: 1em;
@@ -31,9 +34,9 @@ section {
 }
 
 h1 {
-    font-size: 2em;
-    margin-bottom: 0.75em;
-    font-weight: normal;
+	font-size: 2em;
+	margin-bottom: 0.75em;
+	font-weight: normal;
 }
 
 h2 {
@@ -46,22 +49,21 @@ article p, article h2, article a {
 
 article p:after, article h2:after, article a:after {
 	content:"\000A";
-    white-space: pre;
+	white-space: pre;
 }
 
 pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    line-height: 140%;
-    padding: 2% 2.5%;
-    background: #FFF;
-    font-size: 0.8em;
-    color: #333;
-    max-width: 40%;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	line-height: 140%;
+	padding: 2% 2.5%;
+	background: #FFF;
+	font-size: 0.8em;
+	color: #333;
+	max-width: 40%;
 }
 
 /* Links */
-
 a {
 	color: #09c;
 	text-decoration: none;
@@ -147,7 +149,7 @@ ul {
 }
 ul:after {
 	content:"\000A";
-    white-space: pre;
+	white-space: pre;
 }
 
 
@@ -165,7 +167,6 @@ footer {
 footer nav {
 	float: none;
 }
-
 
 footer small, footer small a {
 	color: #d9d3bd;
