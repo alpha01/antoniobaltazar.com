@@ -1,104 +1,480 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
+
 <head>
-	<title>Antonio Baltazar, Sysadmin DevOps Dude | Home</title>
 
-	<!--[if lt IE 9]
-		<script scr="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-	<link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Tony Baltazar's Online Portfolio.">
+  <meta name="author" content="Antonio Baltazar">
 
-	<meta charset="UTF-8">
-	<meta name="author" content="Antonio Baltazar">
-	<meta name="description" content="Tony Baltazar's Online Portfolio.">
-	<meta name="keywords" content="tony baltazar, antonio baltazar, alpha01, ruby, sysadmin, systems administrator, rubyninja, perlninja, linux, unix, apple, google, santa ana, apache, mysql, php, perl, bsd, devops">
+  <title>Antonio Baltazar, Sysadmin DevOps Dude</title>
 
-	<link rel="shortcut icon" href="images/favicon.ico">
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-	<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-12912270-4']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.css" rel="stylesheet">
+  <!-- Additional Icons -->
+  <link href="vendor/font-mfizz/font-mfizz.css" rel="stylesheet">
 
-	<script type='application/ld+json'>
+  <!-- Custom styles for this template -->
+  <link href="css/resume.min.css" rel="stylesheet">
+
+  <link rel="shortcut icon" href="images/favicon.ico">
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-12912270-4']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+
+  <!-- My Microdata -->
+  <script type='application/ld+json'>
     {
         "@context": "http://www.schema.org",
         "@type": "Person",
         "name": "Antonio Baltazar",
-        "jobTitle": "Linux Systems Administrator",
+        "jobTitle": "Systems Administrator",
         "email": "root@antoniobaltazar.com",
-        "image": "http://www.antoniobaltazar.com/images/tony.jpg",
+        "image": "https://www.antoniobaltazar.com/images/tony.jpg",
         "description": "Open Source Aficionado",
         "url": [
-        	"http://www.antoniobaltazar.com",
-        	"https://www.rubysecurity.org",
-        	"http://www.rubyninja.org"
+          "http://www.antoniobaltazar.com",
+          "https://www.rubysecurity.org",
+          "https://www.rubyninja.org"
         ],
         "sameAs" : [
-    		"https://www.linkedin.com/in/tonybaltazar",
-    		"https://twitter.com/alpha01",
-    		"https://github.com/alpha01"
-  		]
-      }
-	</script>
+        "https://www.linkedin.com/in/tonybaltazar",
+        "https://twitter.com/alpha01",
+        "https://github.com/alpha01"
+        ]
+    }
+  </script>
 
 </head>
-<body>
-	<!-- Page Container -->
-	<div id="container">
-			<!-- Header -->
-			<header>
-				<a href="index.html"><img alt="Tony Baltazar" title="Open Source Aficionado" class="round" src="images/tony.jpg"></a>
-				<!-- Navigation -->
-				<nav class="round">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="http://www.rubyninja.org/" target="_blank">Blog</a></li>
-						<li><a href="https://github.com/alpha01" target="_blank">GitHub</a></li>
-						<li><a href="http://www.linkedin.com/in/tonybaltazar" target="_blank">LinkedIn</a></li>
-					</ul>
-				</nav>
-		</header>
 
-		<!-- Main Content -->
-		<section class="round">
-			<h1>Antonio Baltazar, Linux Systems Administrator / DevOps Engineer</h1>
-			<article>
-				<h2>Online Portfolio:</h2>
-				<p>HTML5/CSS</p>
-				<a href="index.html" target="_blank">www.antoniobaltazar.com</a>
-			</article>
-			<br>
-			<article>
-				<h2>Blog:</h2>
-				<p>WordPress / MySQL</p>
-				<a href="http://www.rubyninja.org/" target="_blank">www.rubyninja.org</a>
-			</article>
-			<br>
-			<article>
-				<h2>Personal online self programming and system administration documentation:</h2>
-				<p>Drupal / MySQL</p>
-				<a href="https://www.rubysecurity.org/" target="_blank">www.rubysecurity.org</a>
-			</article>
-			<br>
-			<article>
-				<h2>Open Source Developer:</h2>
-				<p>Vagrant Plugin Maintainer</p>
-				<a href="https://github.com/fgrehm/vagrant-notify" target="_blank">vagrant-notify</a>
-				<br>
-				<p>Ganglia Module Author</p>
-				<a href="https://github.com/ganglia/gmond_python_modules/tree/master/twemproxy" target="_blank">twemproxy</a>
-			</article>
-		</section>
+<body id="page-top">
 
-		<!-- Footer -->
-		<footer>
-			<nav class="round">
-				<ul>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-					<li><a href="resume.html">Resumé</a></li>
-				</ul>
-			</nav>
-			<small>&copy; 2019 Antonio C. Baltazar. All Rights Reserved - <a href="sitemap.html" title="Links to all the pages on this website">Sitemap</a></small>
-		</footer>
-	</div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">Antonio Baltazar</span>
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/tony.jpg" alt="Tony's Image">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+      <div class="w-100">
+        <h1 class="mb-0">Antonio
+          <span class="text-primary">Baltazar</span>
+        </h1>
+        <div class="subheading mb-5">Systems Administrator / DevOps Engineer</div>
+
+        <ul class="list-inline dev-icons">
+          <li class="list-inline-item">
+            <i class="fab fa-aws"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fab fa-linux"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="icon-solaris"></i>
+          </li>
+        </ul>
+  
+        <ul class="list-inline dev-icons">
+          <li class="list-inline-item">
+            <i class="icon-script"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="icon-perl"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fab fa-php"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fab fa-python"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="icon-ruby"></i>
+          </li>
+        </ul>
+
+        <p class="lead mb-5">11+ years of professional experience, dynamic and detail-oriented Systems Engineer with solid experience supporting on-premise, cloud, and hybrid infrastructures with web apps ranging from WordPress, Drupal, to fully custom PHP and Java applications.<br><br>
+        Highly skilled in architecting scalable web system infrastructures.</p>
+
+        <div class="social-icons">
+          <a href="http://www.linkedin.com/in/tonybaltazar" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/alpha01" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://twitter.com/alpha01" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.rubyninja.org/" target="_blank">
+            <i class="fas fa-blog"></i>
+          </a>
+          <a href="https://www.rubysecurity.org/" target="_blank">
+            <i class="fas fa-globe"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+      <div class="w-100">
+        <h2 class="mb-5">Experience</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Systems Administrator</h3>
+            <div class="subheading mb-3"><a href="http://www.enthusiastnetwork.com" target="_blank">TEN: PUBLISHING</a></div>
+            <ul>
+              <li>Migrated on-premise infrastructure to AWS.</li>
+              <li>Designed fault-tolerant environments.</li>
+              <li>Streamlined developer workflow using tools like Vagrant, docker-compose, and Git.</li>
+              <li>Automated system deployments and changes using tools like Ansible, Terraform, and CloudFormation.</li>
+              <li>Containerized all core web applications.</li>
+              <li>Worked on improving application performance (CDN services, Varnish and Memcached caching, Apache and PHP optimization, and application profiling).</li>
+              <li>Created CI/CD processes with regression testing, allowing for deployments with zero downtime.</li>
+              <li>Implemented a wide variety of custom application and system monitoring solutions.</li>
+            </ul>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">September 2013 - July 2019</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Data Center Operations Administrator / Systems Administrator</h3>
+            <div class="subheading mb-3"><a href="https://www.dreamhost.com/" target="_blank">DreamHost</a> <i class="icon-dreamhost"></i></div>
+            <ul>
+              <li>Collaborated with the Network and System Engineering teams to ensure smooth and reliable operations at all times.</li>
+              <li>Provided Level 2 support; assisted, and mentored Level 1 Tech Support Specialists.</li>
+              <li>Monitored services across thousands of machines (physical and virtual) via Nagios.</li>
+              <li>Perl programming using custom in-house APIs to proactively identify and fix services.</li>
+              <li>Solaris 11 System Administration; Large scale ZFS backup storage nodes.</li>
+              <li>ZFS pool and traditional hardware RAID rebuilds.</li>
+              <li>Racked and provisioned new physical servers.</li>
+          </ul>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">November 2012 - September 2013</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">Systems Administrator</h3>
+            <div class="subheading mb-3">Pictage, Inc.</div>
+            <ul>
+              <li>Responsible for all backup and restore operations.</li>
+              <li>Oversaw complex systems infrastructure in order to fix or escalate any issues immediately as they occurred.</li>
+              <li>Troubleshooted proprietary photography applications running on Linux and Windows platforms.</li>
+              <li>Wrote custom Perl scripts to automate manual tasks.</li>
+              <li>Performed data center operations such as racked/unracked servers, KVMs, network cabling, and hard drive replacements.</li>
+            </ul>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">July 2012 - October 2012</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-content">
+            <h3 class="mb-0">Systems Administrator</h3>
+            <div class="subheading mb-3"><a href="https://www.trinetsolutions.com/" target="_blank">Trinet Internet Solutions, Inc.</a></div>
+            Lead Systems Administrator:
+            <ul>
+              <li>Administered over 50 web applications across different hosting providers. (managed and unmanaged)</li>
+              <li>Implemented proper security access controls, monitoring, alerting and reporting of the existing system infrastructure.</li>
+              <li>Migrated on-premise infrastructures to AWS or other managed hosting solutions.</li>
+              <li>Designed, tested, and implemented custom backup solutions.</li>
+              <li>Architected and documented new and existing system infrastructures (development and production).</li>
+              <li>Custom Apache web server configurations.</li>
+              <li>SSL certificate management through all major Certificate Authorities.</li>
+              <li>Primarily used PHP, Perl, and Bash for all custom scripting solutions.</li>
+              <li>Monitored MySQL servers; created, restored databases/tables as needed.</li>
+              <li>Performed DNS updates via BIND and web portals.</li>
+              <li>Customs mail server configurations using Exim, Sendmail, and Sendgrid.</li>
+              <li>Occasional backend PHP web programming.</li>
+            </ul>
+
+            Desktop/IT Support:
+            <ul>
+              <li>Responsible for all office IT operations.</li>
+              <li>LAN/WAN administrator for over 50 end-users located on multiple locations with mixed Active Directory environments.</li>
+              <li>Cisco ASA firewall/VPN configurations (via ASDM).</li>
+              <li>Mail server administrator.</li>
+            </ul>
+
+
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">June 2008 - July 2012</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+      <div class="w-100">
+        <h2 class="mb-5">Education</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">ITT-Technical Institute San Bernardino, CA</h3>
+            <div class="subheading mb-3">Bachelor Degree of Science</div>
+            <div>Information Security Systems</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">September 2006 - September 2008</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">ITT-Technical Institute San Bernardino, CA</h3>
+            <div class="subheading mb-3">Associate Degree of Science</div>
+            <div>Computer Network Systems</div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">June 2004 - September 2006</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
+      <div class="w-100">
+        <h2 class="mb-5">Skills</h2>
+
+        <div class="subheading mb-3">Programming Languages:</div>
+        <ul>
+          <li>Bash / Shell</li>
+          <li>PHP</li>
+          <li>Perl</li>
+          <li>Ruby</li>
+          <li>Python</li>
+        </ul>
+
+      <div class="subheading mb-3">Databases:</div>
+        <ul>
+          <li>MySQL / MariaDB</li>
+          <li>PostgreSQL</li>
+          <li>Memcached (distributed memory object caching)</li>
+          <li>Elasticsearch (distributed full-text search engine)</li>
+        </ul> 
+
+      <div class="subheading mb-3">Configuration Management and Automation:</div>
+        <ul>
+          <li>Ansible</li>
+          <li>Puppet</li>
+          <li>Terraform</li>
+          <li>Kickstart</li>
+          <li>Vagrant</li>
+        </ul>
+
+      <div class="subheading mb-3">Continuous Integration / Delivery, Version Control:</div>
+        <ul>
+          <li>Jenkins</li>
+          <li>Atlassian Bamboo</li>
+          <li>Git</li>
+          <li>Subversion</li>
+        </ul>
+
+      <div class="subheading mb-3">Monitoring and System Performance:</div>
+        <ul>
+          <li>Nagios</li>
+          <li>Graphite</li>
+          <li>Grafana</li>
+          <li>ELK Stack</li>
+          <li>Prometheus</li>
+          <li>CloudWatch</li>
+          <li>Ganglia</li>
+        </ul> 
+
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="contact">
+      <div class="w-100">
+        <h2 class="mb-5">Contact</h2>
+        <p>root[@]antoniobaltazar.com</p>
+
+      <a href="https://keyserver.2ndquadrant.com/pks/lookup?search=0x8f5df67e8402f5fb&op=vindex" target="_blank">For the ultra paranoid:</a><br>
+      Key ID: 0x8f5df67e8402f5fb<br>
+      Key Type: RSA<br>
+      Expires: 2020-03-04<br>
+      Key Size: 4096/4096<br>
+      Fingerprint: 8C99 3A05 E4DF EBB8 168F  9CCF 8F5D F67E 8402 F5FB<br>
+      UserID: Antonio C. Baltazar<br>
+<pre class="round">
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+pVE3ZZlnNgT+tg3NJwCz1wxPRU9pmTodM0lJ
+=Ru+r
+-----END PGP PUBLIC KEY BLOCK-----
+</pre>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+      <div class="w-100">
+        <h2 class="mb-5">Interests</h2>
+        <p>Apart from being a sysadmin, I'm an avid futebol (soccer) aficionado. In my spare time, I also enjoy geeking out on reading Fantasy, Mythology, History, and studying Languages (Native Spanish and English, Intermediate Portuguese).</p>
+        <p class="mb-0">I love keeping my skills up-to-date by continuously exploring and testing new technologies in my home lab.</p>
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="projects">
+      <div class="w-100">
+        <h2 class="mb-5">Projects &amp; Certifications</h2>
+        <ul class="fa-ul mb-0">
+          <li>
+            <a href="https://github.com/ganglia/gmond_python_modules/tree/master/twemproxy" target="_blank"><i class="fa-li fab fa-github text-warning"></i>
+            Ganglia Module Author: twemproxy</a>
+          </li>
+          <li>
+            <a href="https://github.com/fgrehm/vagrant-notify" target="_blank"><i class="fa-li fab fa-github text-warning"></i>
+            Vagrant Plugin Maintainer: vagrant-notify</a>
+          </li>
+        </ul>
+        <br>
+        <ul class="fa-ul mb-0">
+          <li>
+            <a href="images/lpic-1.jpg" target="_blank"><i class="fa-li fa fa-trophy text-warning"></i></a>
+            Linux Professional Institute Level 1 Certified Linux Systems Administrator (LPIC-1)
+          </li>
+          <li>
+            <a href="images/AntonioBaltazar_NCLA_ECR.pdf" target="_blank"><i class="fa-li fa fa-trophy text-warning"></i></a>
+            Novell Certified Linux Administrator
+          </li>
+          <li>
+            <a href="images/linux_plus.jpg" target="_blank"><i class="fa-li fa fa-trophy text-warning"></i></a>
+            CompTIA Linux+ Certified Professional
+          </li>
+          <li>
+            <a href="images/network_plus.jpg" target="_blank"><i class="fa-li fa fa-trophy text-warning"></i></a>
+            CompTIA Network+ Certified Professional
+          </li>
+          <li>
+            <a href="images/a_plus.jpg" target="_blank"><i class="fa-li fa fa-trophy text-warning"></i></a>
+            CompTIA A+ Remote Support Certified Technician
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/resume.min.js"></script>
+
 </body>
+
 </html>
