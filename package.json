@@ -1,9 +1,9 @@
 {
     "title": "Resume",
     "name": "startbootstrap-resume",
-    "version": "5.0.5",
+    "version": "5.0.7",
     "scripts": {
-        "start": "gulp watch"
+        "start": "node_modules/.bin/gulp watch"
     },
     "description": "Resume is a simple, yet elegant resume and CV theme for Bootstrap 4.",
     "keywords": [
@@ -23,22 +23,21 @@
     "author": "Start Bootstrap",
     "contributors": [
         "David Miller (http://davidmiller.io/)",
-        "Tony Baltazar (https://www.antoniobaltazar.com/)"
+        "Antonio Baltazar (https://www.antoniobaltazar.com/)"
     ],
     "repository": {
         "type": "git",
         "url": "https://github.com/BlackrockDigital/startbootstrap-resume.git"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "5.8.2",
+        "@fortawesome/fontawesome-free": "5.9.0",
         "font-mfizz": "2.4.1",
         "bootstrap": "4.3.1",
         "jquery": "3.4.1",
-        "jquery.easing": "^1.4.1",
-        "npm": "^6.9.0"
+        "jquery.easing": "^1.4.1"
     },
     "devDependencies": {
-        "browser-sync": "2.26.5",
+        "browser-sync": "2.26.7",
         "del": "4.1.1",
         "gulp": "4.0.2",
         "gulp-autoprefixer": "6.1.0",
@@ -48,6 +47,6 @@
         "gulp-rename": "1.4.0",
         "gulp-sass": "4.0.2",
         "gulp-uglify": "3.0.2",
-        "merge-stream": "^1.0.1"
+        "merge-stream": "2.0.0"
     }
 }
