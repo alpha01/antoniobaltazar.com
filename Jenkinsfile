@@ -34,22 +34,21 @@ pipeline {
         }
 
         stage('Deploy') {
-        	steps {
-        		sh "rsync -av \
-  				    -e 'ssh -p ${SSH_PORT}' \
-  					--dry-run \
-  					--exclude=*git* \
-  					--exclude=README.md \
-  					--exclude=LICENSE \
-  					--exclude=Jenkinsfile \
-  					--exclude=tests \
-  					--exclude=node_modules \
-  					--exclude=gulpfile.js \
-  					--exclude=*.json \
-  					--delete \
-  					${env.WORKSPACE}/ \
-  					deploy@${DEPLOY_HOSTS}:/www/${DOMAIN}/"
-        	}
+            steps {
+                sh "rsync -av \
+                    -e 'ssh -p ${SSH_PORT}' \
+                    --exclude=*git* \
+                    --exclude=README.md \
+                    --exclude=LICENSE \
+                    --exclude=Jenkinsfile \
+                    --exclude=tests \
+                    --exclude=node_modules \
+                    --exclude=gulpfile.js \
+                    --exclude=*.json \
+                    --delete \
+                    ${env.WORKSPACE}/ \
+                    deploy@${DEPLOY_HOSTS}:/www/${DOMAIN}/"
+            }
 
         }
 
