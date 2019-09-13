@@ -45,6 +45,7 @@ pipeline {
                     --exclude=node_modules \
                     --exclude=gulpfile.js \
                     --exclude=*.json \
+                    --exclude=blog \
                     --delete \
                     ${env.WORKSPACE}/ \
                     deploy@${DEPLOY_HOSTS}:/www/${DOMAIN}/"
