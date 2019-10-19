@@ -93,3 +93,15 @@ pre {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
+
+#badges {
+  padding-top: 15px;
+  li {
+    list-style-type: none;
+    display: inline-block;
+  }
+  img {
+    width: 144px;
+    height: 144px;
+  }
+}
