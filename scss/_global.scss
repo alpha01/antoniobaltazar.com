@@ -94,9 +94,9 @@ pre {
   border-radius: 10px;
 }
 
-#badges {
+.badges {
   padding-top: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   li {
     list-style-type: none;
     display: inline-block;
@@ -105,4 +105,10 @@ pre {
     width: 144px;
     height: 144px;
   }
+}
+
+#comptia {
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
