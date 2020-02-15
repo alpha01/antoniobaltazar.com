@@ -8,4 +8,4 @@ RUN chmod 755 /varnish/*.sh \
 
 EXPOSE 6081
 
-CMD ["/bin/sh", "/varnish/run-nginx.sh"]
+CMD ["/bin/sh", "/varnish/run-varnish.sh"]
