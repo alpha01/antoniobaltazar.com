@@ -1,0 +1,56 @@
+version: "3.5"
+services:
+  app:
+    env_file: ./Docker/.env
+    #image: portfolio_app
+    build:
+      context: .
+      dockerfile: ./Docker/app/Dockerfile
+    networks:
+      - app
+    ports:
+      - "127.0.0.1:8081:80"
+    volumes:
+      - ./:/usr/share/nginx/html
+  varnish:
+    env_file: ./Docker/.env
+    #image: portfolio_varnish
+    build: 
+      context: .
+      dockerfile: ./Docker/varnish/Dockerfile
+    depends_on: 
+      - app
+    ports:
+      - "127.0.0.1:8080:6081"
+    networks:
+      - app
+  gulp:
+    env_file: ./Docker/.env
+    #image: portfolio_gulp
+    build: 
+      context: .
+      dockerfile: ./Docker/gulp/Dockerfile
+    volumes:
+      - ./css:/css
+      - ./js:/js
+      - ./scss:/scss
+      - ./package.json:/package.json
+      - ./gulpfile.js:/gulpfile.js
+#  test:
+#    env_file: ./Docker/.env
+#    image: portfolio_app
+#    build: 
+#      context: .
+#      dockerfile: ./Docker/test/Dockerfile
+#    depends_on:
+#      - app
+#      - varnish
+#    ports:
+#      - "127.0.0.1:8082:80"
+#    networks:
+#      - app
+networks:
+  app:
+    name: app
+  default:
+    name: app
