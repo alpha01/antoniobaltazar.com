@@ -15,7 +15,7 @@ services:
       - portfolio
   tests:
     image: alpha01/alpha01-jenkins
-    depend_on:
+    depends_on:
       - app
       - varnish
     networks:
