@@ -20,14 +20,16 @@ pipeline {
         CF_KEY   = credentials('CF_KEY')
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
     }
+    def portfolioApp = ""
+    def portfolioVarnish = ""
 
     stages {
         stage('Build') {
             steps {
                 git url: 'git@github.com:alpha01/antoniobaltazar.com.git', branch: 'v3'
                 script {
-                    def portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
-                    def portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile Docker/varnish")
+                    $portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
+                    $portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile Docker/varnish")
                 }
             }
         }
@@ -48,8 +50,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1', 'docker-hub-login') {
-                        portfolioApp.push()
-                        portfolioVarnish.push()
+                        $portfolioApp.push()
+                        $portfolioVarnish.push()
                     //sh "docker push alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
                     //sh "docker push alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
                     }
