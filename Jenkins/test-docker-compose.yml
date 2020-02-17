@@ -1,0 +1,25 @@
+# docker-compose file used by check_site 
+version: "3.5"
+services:
+  app:
+    image: alpha01jenkins/portfolio_app:##TAG##
+    networks:
+      - portfolio
+  varnish:
+    image: alpha01jenkins/portfolio_app:##TAG##
+    depends_on: 
+      - app
+    ports:
+      - "127.0.0.1:##RANDOM##:6081"
+    networks:
+      - portfolio
+    tests:
+      image: alpha01/alpha01-jenkins
+      depend_on:
+        - app
+        - varnish
+networks:
+  portfolio:
+    name: portfolio
+  default:
+    name: portfolio
