@@ -53,8 +53,6 @@ pipeline {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-login') {
                         $portfolioApp.push()
                         $portfolioVarnish.push()
-                    //sh "docker push alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
-                    //sh "docker push alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
                     }
                 }
                 //Deploy to DCOS here!
@@ -73,7 +71,7 @@ pipeline {
             }
         }
         success {
-            sh "docker run --rm -it -e CF_EMAIL=${CF_EMAIL} -e CF_KEY=${CF_KEY} alpha01/alpha01-jenkins /cdn/cloudflare-purge.php --domain ${DOMAIN}"
+            sh "docker run --rm -e CF_EMAIL=${CF_EMAIL} -e CF_KEY=${CF_KEY} alpha01/alpha01-jenkins /cdn/cloudflare-purge.php --domain ${DOMAIN}"
             // purge local containers
         }
         failure {
