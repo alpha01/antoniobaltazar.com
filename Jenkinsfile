@@ -50,7 +50,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1', 'docker-hub-login') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-login') {
                         $portfolioApp.push()
                         $portfolioVarnish.push()
                     //sh "docker push alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
