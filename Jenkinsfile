@@ -1,3 +1,6 @@
+def portfolioApp
+def portfolioVarnish
+
 pipeline {
     agent any
     
@@ -19,10 +22,6 @@ pipeline {
         CF_EMAIL = credentials('CF_EMAIL')
         CF_KEY   = credentials('CF_KEY')
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
-    }
-    script {
-        def portfolioApp = ""
-        def portfolioVarnish = ""
     }
 
     stages {
