@@ -1,6 +1,6 @@
 FROM node:latest
 
-ADD Docker/gulp /gulp
+ADD run-gulp-watch.sh /gulp/run-gulp-watch.sh
 
 RUN chmod 755 /gulp/*.sh \
   && npm install --global gulp-cli \

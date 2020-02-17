@@ -2,10 +2,8 @@ version: "3.5"
 services:
   app:
     env_file: ./Docker/.env
-    #image: portfolio_app
     build:
-      context: .
-      dockerfile: ./Docker/app/Dockerfile
+      context: ./Docker/app
     networks:
       - portfolio
     ports:
@@ -14,10 +12,8 @@ services:
       - ./:/usr/share/nginx/html
   varnish:
     env_file: ./Docker/.env
-    #image: portfolio_varnish
     build: 
-      context: .
-      dockerfile: ./Docker/varnish/Dockerfile
+      context: ./Docker/varnish
     depends_on: 
       - app
     ports:
@@ -26,10 +22,8 @@ services:
       - portfolio
   gulp:
     env_file: ./Docker/.env
-    #image: portfolio_gulp
     build: 
-      context: .
-      dockerfile: ./Docker/gulp/Dockerfile
+      context: ./Docker/gulp
     volumes:
       - ./css:/css
       - ./js:/js
@@ -38,10 +32,8 @@ services:
       - ./gulpfile.js:/gulpfile.js
 #  test:
 #    env_file: ./Docker/.env
-#    image: portfolio_app
 #    build: 
-#      context: .
-#      dockerfile: ./Docker/test/Dockerfile
+#      context: ./Docker/test
 #    depends_on:
 #      - app
 #      - varnish
