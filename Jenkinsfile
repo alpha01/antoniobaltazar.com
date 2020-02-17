@@ -26,7 +26,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git url: 'git@github.com:alpha01/antoniobaltazar.com.git', branch: 'master'
+                git url: 'git@github.com:alpha01/antoniobaltazar.com.git', branch: 'v3'
                 script {
                     def portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
                     def portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile .")
