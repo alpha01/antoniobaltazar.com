@@ -13,11 +13,13 @@ services:
       - "127.0.0.1:##RANDOM##:6081"
     networks:
       - portfolio
-    tests:
-      image: alpha01/alpha01-jenkins
-      depend_on:
-        - app
-        - varnish
+  tests:
+    image: alpha01/alpha01-jenkins
+    depend_on:
+      - app
+      - varnish
+    networks:
+      - portfolio
 networks:
   portfolio:
     name: portfolio
