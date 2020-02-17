@@ -8,7 +8,7 @@ pipeline {
         timestamps()
         disableConcurrentBuilds()
         skipStagesAfterUnstable()
-        timeout(time: 3, unit: 'MINUTES')
+        timeout(time: 10, unit: 'MINUTES')
     }
 
     triggers {
