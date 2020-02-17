@@ -22,6 +22,8 @@ pipeline {
         CF_EMAIL = credentials('CF_EMAIL')
         CF_KEY   = credentials('CF_KEY')
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
+        TEST_DOCKER_NETWORK = 'portfolio'
+        TEST_DOCKER_CONTAINER = 'varnish:6081'
     }
 
     stages {
@@ -41,7 +43,7 @@ pipeline {
                 dir("${env.WORKSPACE}/Jenkins"){
                     sh "./jenkins_test_pipeline.sh"
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
-                    sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
+                    sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests --namework $TEST_DOCKER_NETWORK -e CONTAINER=$TEST_DOCKER_CONTAINER -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
                         alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
                 }
             }

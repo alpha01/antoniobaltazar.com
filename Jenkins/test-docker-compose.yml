@@ -13,13 +13,6 @@ services:
       - "6081"
     networks:
       - portfolio
-  tests:
-    image: alpha01/alpha01-jenkins
-    depends_on:
-      - app
-      - varnish
-    networks:
-      - portfolio
 networks:
   portfolio:
     name: portfolio
