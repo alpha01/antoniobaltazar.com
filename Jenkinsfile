@@ -20,7 +20,7 @@ pipeline {
         CF_KEY   = credentials('CF_KEY')
         DOCKER_CERT_PATH = credentials('docker-hub-login')
         TEST_PORT = "$RANDOM"
-        TEST_DOCKER_COMPOSE = 'Jenkins/test-docker-compose.yml'
+        TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
     }
 
     stages {
