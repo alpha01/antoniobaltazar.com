@@ -1,0 +1,12 @@
+*git*
+Docker
+Dockerfile
+docker-compose.yml
+README.md
+LICENSE
+Jenkins*
+tests
+node_modules
+gulpfile.js
+*.json
+blog
