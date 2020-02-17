@@ -38,7 +38,7 @@ pipeline {
             steps {
                 sh 'docker pull alpha01/alpha01-jenkins'
                 dir("${env.WORKSPACE}/Jenkins"){
-                    sh "export TAG=${env.BUILD_NUMBER} ./jenkins_test_pipeline.sh"
+                    sh "./jenkins_test_pipeline.sh"
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
                     sh "docker run --rm -it -v ${env.WORKSPACE}/tests:/tests -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
                         alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
