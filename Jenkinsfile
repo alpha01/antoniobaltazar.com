@@ -16,49 +16,49 @@ pipeline {
         DOMAIN   = 'antoniobaltazar.com'
         GOOGLE_GA_STRING = 'UA-12912270-4'
         ADMIN_EMAIL  = credentials('ADMIN_EMAIL')
-        DEPLOY_HOSTS = credentials('DEPLOY_HOSTS')
-        SSH_PORT = credentials('SSH_PORT')
-        VARNISH  = credentials('VARNISH')
         CF_EMAIL = credentials('CF_EMAIL')
         CF_KEY   = credentials('CF_KEY')
-        PATH = "/opt/remi/php72/root/bin:/usr/local/phpunit-8.1.3:/usr/local/src/node-v10.16.0-linux-x64/bin:$PATH"
+        DOCKER_CERT_PATH = credentials('docker-hub-login')
+        TEST_PORT = "$RANDOM"
+        TEST_DOCKER_COMPOSE = 'Jenkins/test-docker-compose.yml'
     }
 
     stages {
         stage('Build') {
             steps {
                 git url: 'git@github.com:alpha01/antoniobaltazar.com.git', branch: 'master'
-                sh 'npm install'
-                sh 'gulp'
+                def portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
+                def portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile .")
+                //sh "docker build -f Dockerfile -t app-${env.BUILD_NUMBER} ."
+                //sh "docker build -f Docker/varnish/Dockerfile -t varnish-${env.BUILD_NUMBER} ."
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh './Jenkins/jenkins_test_pipeline.sh'
+                sh "docker-compose -f $TEST_DOCKER_COMPOSE pull"
+                sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
+                sh "docker run --rm -it -v ${env.WORKSPACE}/tests:/tests -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
+                    alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
+                sh "docker-compose -f $TEST_DOCKER_COMPOSE down"
             }
         }
 
         stage('Deploy') {
             steps {
-                sh "rsync -av \
-                    -e 'ssh -p ${SSH_PORT}' \
-                    --exclude=*git* \
-                    --exclude=README.md \
-                    --exclude=LICENSE \
-                    --exclude=Jenkinsfile \
-                    --exclude=tests \
-                    --exclude=node_modules \
-                    --exclude=gulpfile.js \
-                    --exclude=*.json \
-                    --exclude=blog \
-                    --delete \
-                    ${env.WORKSPACE}/ \
-                    deploy@${DEPLOY_HOSTS}:/www/${DOMAIN}/"
+                docker.withRegistry('https://hub.docker.com/', 'docker-hub-login') {
+                    portfolioApp.push()
+                    portfolioVarnish.push()
+                //sh "docker push alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
+                //sh "docker push alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
+                }
+                //Deploy to DCOS here!
             }
 
         }
 
-        stage('Test') {
-            steps {
-                sh 'mkdir tests || true'
-                sh "phpunit ${env.JENKINS_HOME}/phpunit/tests/CheckSiteTest.php --verbose --log-junit tests/${JOB_NAME}-${BUILD_NUMBER}.xml"	
-            }
-        }
+
     }
 
     post {
@@ -67,8 +67,8 @@ pipeline {
             junit 'tests/*xml'
         }
         success {
-            sh "curl -s -x '' -H 'Host: www.${DOMAIN}' http://${VARNISH}:80/ -X PURGE -A 'Jenkins' --verbose"
-            sh "${env.JENKINS_HOME}/cdn/cloudflare-purge.php --domain ${DOMAIN}"
+            sh "docker run --rm -it -e CF_EMAIL=${CF_EMAIL} -e CF_KEY=${CF_KEY} alpha01/alpha01-jenkins /cdn/cloudflare-purge.php --domain ${DOMAIN}"
+            // purge local containers
         }
         failure {
             mail to: "$ADMIN_EMAIL",
