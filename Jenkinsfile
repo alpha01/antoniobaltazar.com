@@ -27,8 +27,10 @@ pipeline {
         stage('Build') {
             steps {
                 git url: 'git@github.com:alpha01/antoniobaltazar.com.git', branch: 'master'
-                def portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
-                def portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile .")
+                script {
+                    def portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
+                    def portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile .")
+                }
                 //sh "docker build -f Dockerfile -t app-${env.BUILD_NUMBER} ."
                 //sh "docker build -f Docker/varnish/Dockerfile -t varnish-${env.BUILD_NUMBER} ."
             }
@@ -47,15 +49,16 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                docker.withRegistry('https://hub.docker.com/', 'docker-hub-login') {
-                    portfolioApp.push()
-                    portfolioVarnish.push()
-                //sh "docker push alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
-                //sh "docker push alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
+                script {
+                    docker.withRegistry('https://hub.docker.com/', 'docker-hub-login') {
+                        portfolioApp.push()
+                        portfolioVarnish.push()
+                    //sh "docker push alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
+                    //sh "docker push alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
+                    }
                 }
                 //Deploy to DCOS here!
             }
-
         }
 
 
