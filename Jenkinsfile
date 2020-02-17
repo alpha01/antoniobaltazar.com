@@ -20,8 +20,10 @@ pipeline {
         CF_KEY   = credentials('CF_KEY')
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
     }
-    def portfolioApp = ""
-    def portfolioVarnish = ""
+    script {
+        def portfolioApp = ""
+        def portfolioVarnish = ""
+    }
 
     stages {
         stage('Build') {
