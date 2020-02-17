@@ -18,7 +18,6 @@ pipeline {
         ADMIN_EMAIL  = credentials('ADMIN_EMAIL')
         CF_EMAIL = credentials('CF_EMAIL')
         CF_KEY   = credentials('CF_KEY')
-        DOCKER_CERT_PATH = credentials('docker-hub-login')
         TEST_PORT = "$RANDOM"
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
     }
