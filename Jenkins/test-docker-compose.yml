@@ -6,7 +6,7 @@ services:
     networks:
       - portfolio
   varnish:
-    image: alpha01jenkins/portfolio_app:##TAG##
+    image: alpha01jenkins/portfolio_varnish:##TAG##
     depends_on: 
       - app
     ports:

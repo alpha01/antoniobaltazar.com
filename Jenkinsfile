@@ -38,9 +38,8 @@ pipeline {
                 dir("${env.WORKSPACE}/Jenkins"){
                     sh "./jenkins_test_pipeline.sh"
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
-                    sh "docker run --rm -it -v ${env.WORKSPACE}/tests:/tests -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
+                    sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
                         alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
-                    sh "docker-compose -f $TEST_DOCKER_COMPOSE down"
                 }
             }
         }
@@ -66,6 +65,9 @@ pipeline {
         always {
             echo 'Job run completed.'
             junit 'tests/*xml'
+            dir("${env.WORKSPACE}/Jenkins"){
+                sh "docker-compose -f $TEST_DOCKER_COMPOSE down --rmi all"
+            }
         }
         success {
             sh "docker run --rm -it -e CF_EMAIL=${CF_EMAIL} -e CF_KEY=${CF_KEY} alpha01/alpha01-jenkins /cdn/cloudflare-purge.php --domain ${DOMAIN}"
