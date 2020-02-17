@@ -10,7 +10,7 @@ services:
     depends_on: 
       - app
     ports:
-      - "127.0.0.1:##RANDOM##:6081"
+      - "6081"
     networks:
       - portfolio
   tests:

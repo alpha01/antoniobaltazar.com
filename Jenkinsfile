@@ -18,7 +18,6 @@ pipeline {
         ADMIN_EMAIL  = credentials('ADMIN_EMAIL')
         CF_EMAIL = credentials('CF_EMAIL')
         CF_KEY   = credentials('CF_KEY')
-        TEST_PORT = "$RANDOM"
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
     }
 
