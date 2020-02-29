@@ -24,12 +24,13 @@ pipeline {
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
         TEST_DOCKER_NETWORK = 'portfolio'
         TEST_DOCKER_CONTAINER = 'varnish:6081'
+        APP_HOST = 'app'
     }
 
     stages {
         stage('Build') {
             steps {
-                git url: 'git@github.com:alpha01/antoniobaltazar.com.git', branch: 'v3'
+                //git url: 'git@github.com:alpha01/antoniobaltazar.com.git', branch: 'v3'
                 script {
                     $portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
                     $portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile Docker/varnish")
@@ -40,8 +41,10 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'docker pull alpha01/alpha01-jenkins'
+                sh 'mkdir ./tests || true'
                 dir("${env.WORKSPACE}/Jenkins"){
-                    sh "./jenkins_test_pipeline.sh"
+                    //sh "./jenkins_test_pipeline.sh"
+                    sh "sed -i 's/##TAG##/${env.BUILD_NUMBER}/g' test-docker-compose.yml"
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
                     retry (10) {
                         sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests --network $TEST_DOCKER_NETWORK -e CONTAINER=$TEST_DOCKER_CONTAINER -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
