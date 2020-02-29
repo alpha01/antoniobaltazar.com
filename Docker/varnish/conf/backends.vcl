@@ -1,5 +1,5 @@
 
 backend default {
-  .host = "app";
+  .host = "##APP_HOST##";
   .port = "80";
 }
