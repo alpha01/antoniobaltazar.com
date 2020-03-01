@@ -84,10 +84,15 @@ pipeline {
             }
         }
         success {
+            // CDN Purge
             sh "docker run --rm -e CF_EMAIL=${CF_EMAIL} -e CF_KEY=${CF_KEY} alpha01/alpha01-jenkins /cdn/cloudflare-purge.php --domain ${DOMAIN}"
+
+            // Container cleanup
             sh "docker rmi -f alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
             sh "docker rmi -f alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
             sh "docker rmi -f alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
+            sh "docker rmi -f registry.hub.docker.com/alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
+            sh "docker rmi -f registry.hub.docker.com/alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
         }
         failure {
             mail to: "$ADMIN_EMAIL",
