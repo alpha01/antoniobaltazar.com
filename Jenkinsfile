@@ -1,5 +1,6 @@
 def portfolioApp
 def portfolioVarnish
+def tonyTest = URLDecoder.decode("test%2F123", "UTF-8")
 
 pipeline {
     agent any
@@ -93,6 +94,11 @@ pipeline {
             sh "docker rmi -f alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
             sh "docker rmi -f registry.hub.docker.com/alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
             sh "docker rmi -f registry.hub.docker.com/alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
+
+            // Notification
+            mail to: "$ADMIN_EMAIL",
+            subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
+            body: "Success ${env.BUILD_URL}\ntonyTest is ${tonyTest}\nntonyTest is test/123"
         }
         failure {
             mail to: "$ADMIN_EMAIL",
