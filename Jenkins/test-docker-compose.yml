@@ -6,6 +6,7 @@ services:
     networks:
       - portfolio
   varnish:
+    env_file: ../Docker/.env
     image: alpha01jenkins/portfolio_varnish:##TAG##
     depends_on: 
       - app

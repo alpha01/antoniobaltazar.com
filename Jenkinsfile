@@ -24,7 +24,6 @@ pipeline {
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
         TEST_DOCKER_NETWORK = 'portfolio'
         TEST_DOCKER_CONTAINER = 'varnish:6081'
-        APP_HOST = 'app'
     }
 
     stages {
