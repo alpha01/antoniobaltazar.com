@@ -8,7 +8,7 @@ pipeline {
         timestamps()
         disableConcurrentBuilds()
         skipStagesAfterUnstable()
-        timeout(time: 10, unit: 'MINUTES')
+        timeout(time: 15, unit: 'MINUTES')
     }
 
     triggers {
@@ -85,7 +85,9 @@ pipeline {
         }
         success {
             sh "docker run --rm -e CF_EMAIL=${CF_EMAIL} -e CF_KEY=${CF_KEY} alpha01/alpha01-jenkins /cdn/cloudflare-purge.php --domain ${DOMAIN}"
-            // purge local containers
+            sh "docker rmi -f alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
+            sh "docker rmi -f alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
+            sh "docker rmi -f alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
         }
         failure {
             mail to: "$ADMIN_EMAIL",
