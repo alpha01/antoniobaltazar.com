@@ -3,4 +3,7 @@
 npm install
 
 ./node_modules/gulp/bin/gulp.js build
-./node_modules/gulp/bin/gulp.js watch
+
+if [ "$APP_ENV" == "dev" ]; then
+    ./node_modules/gulp/bin/gulp.js watch
+fi

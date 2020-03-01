@@ -34,6 +34,11 @@ pipeline {
                     $portfolioApp =  docker.build("alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}", "-f Dockerfile .")
                     $portfolioVarnish = docker.build("alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}", "-f Docker/varnish/Dockerfile Docker/varnish")
                 }
+                //Build assets
+                sh 'mkdir ./vendor || true'
+                sh "docker build -t alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER} -f Docker/gulp/Dockerfile Docker/gulp"
+                sh "docker run --rm -v ${env.WORKSPACE}/vendor:/vendor -v ${env.WORKSPACE}/gulpfile.js:/gulpfile.js -v ${env.WORKSPACE}/package.json:/package.json \
+                    alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
             }
         }
 
