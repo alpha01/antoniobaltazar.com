@@ -11,5 +11,4 @@ else
     cp -r /vendor/ /vendor-assets/
     # weird shared volume copy issue
     mv /vendor-assets/vendor/* /vendor-assets/ && rmdir /vendor-assets/vendor/
-
 fi
