@@ -48,7 +48,7 @@ pipeline {
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
                     retry (10) {
                         sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests --network $TEST_DOCKER_NETWORK -e CONTAINER=$TEST_DOCKER_CONTAINER -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
-                            --add-host=${DOMAIN}:$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins_varnish_1) \
+                            --add-host=$DOMAIN:$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins_varnish_1) \
                             alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
                         sleep(time: 5, unit: "SECONDS")
                     }
