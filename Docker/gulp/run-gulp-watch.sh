@@ -7,5 +7,6 @@ npm install
 if [ "$APP_ENV" == "dev" ]; then
     ./node_modules/gulp/bin/gulp.js watch
 else
-    cp -r /vendor/ /vendor-assets/ # Jenkins
+    rm -rf /vendor-assets/*
+    cp -rv /vendor /vendor-assets # Jenkins
 fi

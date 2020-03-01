@@ -30,7 +30,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build assets
-                sh 'rm -rf ./vendor && mkdir ./vendor'
+                sh 'mkdir ./vendor || true'
                 sh "docker build -t alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER} -f Docker/gulp/Dockerfile Docker/gulp"
                 sh "docker run --rm -v ${env.WORKSPACE}/vendor:/vendor-assets -v ${env.WORKSPACE}/gulpfile.js:/gulpfile.js -v ${env.WORKSPACE}/package.json:/package.json \
                     -e APP_ENV='prod' alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
