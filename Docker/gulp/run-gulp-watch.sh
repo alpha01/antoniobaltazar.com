@@ -9,4 +9,7 @@ if [ "$APP_ENV" = "dev" ]; then
 else
     rm -rvf /vendor-assets/*
     cp -rv /vendor/ /vendor-assets/
+    # weird shared volume copy issue
+    mv /vendor-assets/vendor/* /vendor-assets/ && rmdir /vendor-assets/vendor/
+
 fi
