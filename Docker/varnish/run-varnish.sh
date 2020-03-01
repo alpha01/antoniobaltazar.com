@@ -7,7 +7,7 @@ if [ "$?" != "0" ]; then
 fi
 
 if [ "$APP_ENV" = "prod" ]; then
-    SLEEP_INTERVAL="25"
+    SLEEP_INTERVAL="60"
 else
     SLEEP_INTERVAL="10"
 fi
