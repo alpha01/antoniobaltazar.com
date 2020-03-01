@@ -43,13 +43,18 @@ pipeline {
                 sh 'docker pull alpha01/alpha01-jenkins'
                 sh 'mkdir ./tests || true'
                 dir("${env.WORKSPACE}/Jenkins"){
-                    //sh "./jenkins_test_pipeline.sh"
                     sh "sed -i 's/##TAG##/${env.BUILD_NUMBER}/g' test-docker-compose.yml"
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
+
+                    script {
+                        TEST_CONTAINER_IP = sh (
+                            script: "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins_varnish_1",
+                            returnStdout: true
+                        ).trim()
+                    }
                     retry (10) {
                         sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests --network $TEST_DOCKER_NETWORK -e CONTAINER=$TEST_DOCKER_CONTAINER -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
-                            --add-host=$DOMAIN:$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins_varnish_1) \
-                            alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
+                            --add-host=$DOMAIN:$TEST_CONTAINER_IP alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
                         sleep(time: 5, unit: "SECONDS")
                     }
                 }
