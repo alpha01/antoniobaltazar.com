@@ -89,8 +89,6 @@ pipeline {
 
             // Container cleanup
             sh "docker rmi -f alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
-            sh "docker rmi -f alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
-            sh "docker rmi -f alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
             sh "docker rmi -f registry.hub.docker.com/alpha01jenkins/portfolio_app:${env.BUILD_NUMBER}"
             sh "docker rmi -f registry.hub.docker.com/alpha01jenkins/portfolio_varnish:${env.BUILD_NUMBER}"
         }
