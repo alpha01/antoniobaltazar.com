@@ -1,4 +1,4 @@
-FROM varnish:6.0.5
+FROM varnish:6.0.6
 
 ADD conf /varnish
 ADD run-varnish.sh /varnish/run-varnish.sh
