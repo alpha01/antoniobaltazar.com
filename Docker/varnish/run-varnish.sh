@@ -6,10 +6,6 @@ if [ "$?" != "0" ]; then
     exit 1
 fi
 
-if [ "$APP_ENV" = "prod" ]; then
-    sleep 60
-fi
-
 (sleep 10 && varnishncsa -f /etc/varnish/varnishncsa_formatfile -t off) &
 
-/usr/sbin/varnishd -F -f /etc/varnish/default.vcl -s malloc,100M -a 0.0.0.0:6081
+/usr/sbin/varnishd -F -f /etc/varnish/default.vcl -s malloc,512M -a 0.0.0.0:6081
