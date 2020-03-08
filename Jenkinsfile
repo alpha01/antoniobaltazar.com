@@ -21,6 +21,7 @@ pipeline {
         ADMIN_EMAIL  = credentials('ADMIN_EMAIL')
         CF_EMAIL = credentials('CF_EMAIL')
         CF_KEY   = credentials('CF_KEY')
+        APP_ENV = 'build'
         TEST_DOCKER_COMPOSE = 'test-docker-compose.yml'
         TEST_DOCKER_NETWORK = 'portfolio'
         TEST_DOCKER_CONTAINER = 'varnish:6081'
@@ -33,7 +34,7 @@ pipeline {
                 sh 'mkdir ./vendor || true'
                 sh "docker build -t alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER} -f Docker/gulp/Dockerfile Docker/gulp"
                 sh "docker run --rm -v ${env.WORKSPACE}/vendor:/vendor-assets -v ${env.WORKSPACE}/gulpfile.js:/gulpfile.js -v ${env.WORKSPACE}/package.json:/package.json \
-                    -e APP_ENV='build' alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
+                    -e APP_ENV=$APP_ENV alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
                 
                 // Containers
                 script {
@@ -60,7 +61,7 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Publish') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-login') {
@@ -68,7 +69,16 @@ pipeline {
                         $portfolioVarnish.push()
                     }
                 }
-                //Deploy to DCOS here!
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Deploy to Mesos
+                dir("${env.WORKSPACE}/Jenkins"){
+                    sh "sed -i 's/##TAG##/${env.BUILD_NUMBER}/g' dcos-portfolio-service.json"
+                    sh './dcos-deploy.sh'
+                }
             }
         }
 
