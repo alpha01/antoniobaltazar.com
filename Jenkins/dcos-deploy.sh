@@ -26,7 +26,7 @@ DEPLOYMENT_STATUS="pass"
 while [ "$RETRY_COUNT" -gt "$CHECK_ATTEMPT_COUNT" ]; do
     POD_STATUS=$(curl -s -S -X GET "http://${MESOS_SERVER}/service/marathon/v2/pods/${MESOS_SERVICE_ID}::status" -H "accept: application/json" | jq '.')
     
-    CONTAINER_STATUS=$(echo $POD_STATUS | jq '.containers[] .image .id')
+    CONTAINER_STATUS=$(echo $POD_STATUS | jq '.spec .containers[] .image .id')
 
     for instance in $(echo "${POD_STATUS}" | jq -r '.instances[] | @base64'); do
         _jq() {
