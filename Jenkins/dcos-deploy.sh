@@ -1,5 +1,5 @@
 #!/bin/bash
-# TO DO: add verification that I'm working on the write deployment!, check container and tags
+# Deploying portfolio to DC/OS 
 
 MESOS_SERVER="master.rubyninja.org"
 MESOS_SERVICE_ID="%2Fweb%2Fportfolio" # encoded mesos service name
@@ -8,22 +8,26 @@ RETRY_COUNT=12
 SLEEP_INTERVAL=10
 
 # Deploying app
-# curl -X PUT "http://${MESOS_SERVER}/service/marathon/v2/pods/${MESOS_SERVICE_ID}?force=true" \
-#     -H "accept: application/json" -H "content-type: application/json" -d@dcos-portfolio-service.json | jq '.'
+DEPLOY=$(curl -X PUT "http://${MESOS_SERVER}/service/marathon/v2/pods/${MESOS_SERVICE_ID}?force=true" \
+     -H "accept: application/json" -H "content-type: application/json" -d@dcos-portfolio-service.json | jq '.')
 
 if [ "$?" != "0" ]; then
     echo "Deployment failed!"
     exit 1
+else
+    echo $DEPLOY
 fi
 
-echo "DEBUG ${env.BUILD_NUMBER}"
-
 # Verifying deployment
+NEW_CONTAINERS=$(echo $DEPLOY | jq '.containers[] .image .id')
+
 CHECK_ATTEMPT_COUNT=0
 DEPLOYMENT_STATUS="pass"
 while [ "$RETRY_COUNT" -gt "$CHECK_ATTEMPT_COUNT" ]; do
     POD_STATUS=$(curl -s -S -X GET "http://${MESOS_SERVER}/service/marathon/v2/pods/${MESOS_SERVICE_ID}::status" -H "accept: application/json" | jq '.')
     
+    CONTAINER_STATUS=$(echo $POD_STATUS | jq '.containers[] .image .id')
+
     for instance in $(echo "${POD_STATUS}" | jq -r '.instances[] | @base64'); do
         _jq() {
             echo ${instance} | base64 --decode | jq -r ${1}
@@ -47,7 +51,7 @@ while [ "$RETRY_COUNT" -gt "$CHECK_ATTEMPT_COUNT" ]; do
         echo ""
 
     done
-    if [ "$DEPLOYMENT_STATUS" = "pass" ]; then
+    if [ "$DEPLOYMENT_STATUS" = "pass" ] && [ "$NEW_CONTAINERS" = "$CONTAINER_STATUS" ]; then
         echo "Successfully deployed app!"
         exit 0
      else
