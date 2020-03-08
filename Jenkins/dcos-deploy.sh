@@ -53,6 +53,7 @@ while [ "$RETRY_COUNT" -gt "$CHECK_ATTEMPT_COUNT" ]; do
     done
     if [ "$DEPLOYMENT_STATUS" = "pass" ] && [ "$NEW_CONTAINERS" = "$CONTAINER_STATUS" ]; then
         echo "Successfully deployed app!"
+        echo $NEW_CONTAINERS
         exit 0
      else
         let CHECK_ATTEMPT_COUNT+=1
