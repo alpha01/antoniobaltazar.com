@@ -30,6 +30,7 @@ services:
       - ./scss:/scss
       - ./package.json:/package.json
       - ./gulpfile.js:/gulpfile.js
+      - ./vendor:/vendor-assets
 #  test:
 #    env_file: ./Docker/.env
 #    build: 
