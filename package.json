@@ -33,7 +33,7 @@
         "@fortawesome/fontawesome-free": "5.9.0",
         "font-mfizz": "2.4.1",
         "bootstrap": "4.3.1",
-        "jquery": "3.4.1",
+        "jquery": "3.5.0",
         "jquery.easing": "^1.4.1"
     },
     "devDependencies": {
