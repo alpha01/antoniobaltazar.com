@@ -1,0 +1,9 @@
+
+
+Rewrite my phpunit tests in Python using unittest
+https://stackoverflow.com/questions/11241781/python-unittests-in-jenkins
+https://selenium.dev/documentation/en/
+
+
+
+https://jenkins.io/doc/book/pipeline/docker/
