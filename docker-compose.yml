@@ -28,8 +28,8 @@ services:
       - ./css:/css
       - ./js:/js
       - ./scss:/scss
-      - ./package.json:/package.json
-      - ./gulpfile.js:/gulpfile.js
+      - ./package.json:/build/package.json
+      - ./gulpfile.js:/build/gulpfile.js
       - ./vendor:/vendor-assets
 #  test:
 #    env_file: ./Docker/.env

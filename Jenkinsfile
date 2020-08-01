@@ -32,7 +32,7 @@ pipeline {
             steps {
                 // Build assets
                 sh "docker build -t alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER} -f Docker/gulp/Dockerfile Docker/gulp"
-                sh "docker run --rm -u jenkins -v ${env.WORKSPACE}/vendor:/vendor-assets -v ${env.WORKSPACE}/gulpfile.js:/gulpfile.js -v ${env.WORKSPACE}/package.json:/package.json \
+                sh "docker run --rm -u jenkins -v ${env.WORKSPACE}/vendor:/vendor-assets -v ${env.WORKSPACE}/gulpfile.js:/build/gulpfile.js -v ${env.WORKSPACE}/package.json:/build/package.json \
                     -e APP_ENV=$APP_ENV alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
                 
                 // Containers
