@@ -46,8 +46,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'docker pull alpha01/alpha01-jenkins'
-                sh 'mkdir ./tests || true'
-                dir("${env.WORKSPACE}/Jenkins"){
+                dir("${env.WORKSPACE}/tests"){
                     sh "sed -i 's/##TAG##/${env.BUILD_NUMBER}/g' test-docker-compose.yml"
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
 
@@ -74,21 +73,35 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Deploy to Mesos
-                dir("${env.WORKSPACE}/Jenkins"){
-                    sh "sed -i 's/##TAG##/${env.BUILD_NUMBER}/g' dcos-portfolio-service.json"
-                    sh './dcos-deploy.sh'
+                script {
+                    ansibleTower(
+                        towerServer: 'AWX',
+                        jobTemplate: '11',
+                        importTowerLogs: true,
+                        removeColor: false,
+                        verbose: true,
+                        extraVars: """---
+                        deploy_mesos_app_server: https://ui-dcos.rubyninja.org
+                        deploy_mesos_app: pod
+                        deploy_mesos_template: portfolio-pod.json.j2
+                        deploy_mesos_app_id: /web/portfolio/portfolio-pod
+                        deploy_mesos_app_container:
+                          - registry.hub.docker.com/alpha01jenkins/portfolio_app
+                          - registry.hub.docker.com/alpha01jenkins/portfolio_varnish
+                        deploy_mesos_app_container_tag: ${env.BUILD_NUMBER}
+                        deploy_mesos_app_state: present
+                        """
+                    )
                 }
             }
         }
-
-
     }
 
     post {
         always {
             echo 'Job run completed.'
             junit 'tests/*xml'
-            dir("${env.WORKSPACE}/Jenkins"){
+            dir("${env.WORKSPACE}/tests"){
                 sh "docker-compose -f $TEST_DOCKER_COMPOSE down --rmi all"
             }
         }

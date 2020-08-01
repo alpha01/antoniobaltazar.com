@@ -1,4 +1,4 @@
-tests/
+tests/*.xml
 .DS_Store
 node_modules
 vendor/*
