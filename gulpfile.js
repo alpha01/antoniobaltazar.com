@@ -2,7 +2,6 @@
 
 // Load plugins
 const autoprefixer = require("gulp-autoprefixer");
-//const browsersync = require("browser-sync").create();
 const cleanCSS = require("gulp-clean-css");
 const del = require("del");
 const gulp = require("gulp");
@@ -24,23 +23,6 @@ const banner = ['/*!\n',
   ' */\n',
   '\n'
 ].join('');
-
-// BrowserSync
-// function browserSync(done) {
-//   browsersync.init({
-//     server: {
-//       baseDir: "./"
-//     },
-//     port: 3000
-//   });
-//   done();
-// }
-
-// // BrowserSync reload
-// function browserSyncReload(done) {
-//   browsersync.reload();
-//   done();
-// }
 
 // Clean vendor
 function clean() {
@@ -111,14 +93,12 @@ function js() {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./js'))
-    //.pipe(browsersync.stream());
 }
 
 // Watch files
 function watchFiles() {
   gulp.watch("./scss/**/*", css);
   gulp.watch("./js/**/*", js);
-  //gulp.watch("./**/*.html", browserSyncReload);
 }
 
 // Define complex tasks
