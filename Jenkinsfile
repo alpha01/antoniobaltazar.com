@@ -32,7 +32,8 @@ pipeline {
             steps {
                 // Build assets
                 sh "docker build -t alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER} -f Docker/gulp/Dockerfile Docker/gulp"
-                sh "docker run --rm -u jenkins -v ${env.WORKSPACE}/vendor:/vendor-assets -v ${env.WORKSPACE}/gulpfile.js:/build/gulpfile.js -v ${env.WORKSPACE}/package.json:/build/package.json \
+                sh "docker run --rm -u jenkins -v ${env.WORKSPACE}/vendor:/vendor-assets \
+                    -v ${env.WORKSPACE}/gulpfile.js:/build/gulpfile.js -v ${env.WORKSPACE}/package.json:/build/package.json \
                     -e APP_ENV=$APP_ENV alpha01jenkins/portfolio_gulp:${env.BUILD_NUMBER}"
                 
                 // Containers
@@ -51,7 +52,8 @@ pipeline {
                     sh "docker-compose -f $TEST_DOCKER_COMPOSE up -d"
 
                     retry (10) {
-                        sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests --network $TEST_DOCKER_NETWORK -e CONTAINER=$TEST_DOCKER_CONTAINER -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
+                        sh "docker run --rm -v ${env.WORKSPACE}/tests:/tests --network $TEST_DOCKER_NETWORK \
+                            -e CONTAINER=$TEST_DOCKER_CONTAINER -e DOMAIN=$DOMAIN -e GOOGLE_GA_STRING=$GOOGLE_GA_STRING \
                             alpha01/alpha01-jenkins phpunit /check_site/tests/CheckSiteTest.php --verbose --log-junit tests/${env.JOB_NAME}-${env.BUILD_NUMBER}.xml"
                         sleep(time: 5, unit: "SECONDS")
                     }
