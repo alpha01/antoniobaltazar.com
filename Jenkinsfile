@@ -71,32 +71,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy') {
-            steps {
-                // Deploy to Mesos
-                script {
-                    ansibleTower(
-                        towerServer: 'AWX',
-                        jobTemplate: '11',
-                        importTowerLogs: true,
-                        removeColor: false,
-                        verbose: true,
-                        extraVars: """---
-                        deploy_mesos_app_server: https://ui-dcos.rubyninja.org
-                        deploy_mesos_app: pod
-                        deploy_mesos_template: portfolio-pod.json.j2
-                        deploy_mesos_app_id: /web/portfolio/portfolio-pod
-                        deploy_mesos_app_container:
-                          - registry.hub.docker.com/alpha01jenkins/portfolio_app
-                          - registry.hub.docker.com/alpha01jenkins/portfolio_varnish
-                        deploy_mesos_app_container_tag: ${env.BUILD_NUMBER}
-                        deploy_mesos_app_state: present
-                        """
-                    )
-                }
-            }
-        }
     }
 
     post {
@@ -118,12 +92,12 @@ pipeline {
         }
         failure {
             mail to: "$ADMIN_EMAIL",
-            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            subject: "Failed Pipeline: ${env.currentBuild.fullDisplayName}",
             body: "Something is wrong with ${env.BUILD_URL}"
         }
         fixed {
             mail to: "$ADMIN_EMAIL",
-            subject: "Fixed Pipeline: ${currentBuild.fullDisplayName}",
+            subject: "Fixed Pipeline: ${env.currentBuild.fullDisplayName}",
             body: "Build ${env.JOB_NAME} has returned to a successful build status.\n${env.BUILD_URL}"
         }
         unstable {
