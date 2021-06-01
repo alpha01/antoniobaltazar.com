@@ -92,12 +92,12 @@ pipeline {
         }
         failure {
             mail to: "$ADMIN_EMAIL",
-            subject: "Failed Pipeline: ${env.currentBuild.fullDisplayName}",
+            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
             body: "Something is wrong with ${env.BUILD_URL}"
         }
         fixed {
             mail to: "$ADMIN_EMAIL",
-            subject: "Fixed Pipeline: ${env.currentBuild.fullDisplayName}",
+            subject: "Fixed Pipeline: ${currentBuild.fullDisplayName}",
             body: "Build ${env.JOB_NAME} has returned to a successful build status.\n${env.BUILD_URL}"
         }
         unstable {
