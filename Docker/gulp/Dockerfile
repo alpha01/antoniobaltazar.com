@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:12
 
 ADD run-gulp-watch.sh /gulp/run-gulp-watch.sh
 
