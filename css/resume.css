@@ -104,9 +104,6 @@ pre {
 .badges li {
   list-style-type: none;
   display: inline-block;
-}
-
-.badges dl ol ul {
   margin-top: 0;
   margin-bottom: 0;
 }
