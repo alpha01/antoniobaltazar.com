@@ -9,28 +9,25 @@ services:
     ports:
       - "127.0.0.1:8081:80"
     volumes:
-      - ./:/usr/share/nginx/html
-  varnish:
-    env_file: ./Docker/.env
-    build: 
-      context: ./Docker/varnish
-    depends_on: 
-      - app
-    ports:
-      - "127.0.0.1:8080:6081"
-    networks:
-      - portfolio
+      - ./_site:/usr/share/nginx/html
+  # Varnish on Apple Silicon does not work
+  # varnish:
+  #   env_file: ./Docker/.env
+  #   build:
+  #     context: ./Docker/varnish
+  #   depends_on:
+  #     - app
+  #   ports:
+  #     - "127.0.0.1:8080:6081"
+  #   networks:
+  #     - portfolio
   gulp:
     env_file: ./Docker/.env
     build: 
       context: ./Docker/gulp
     volumes:
-      - ./css:/css
-      - ./js:/js
-      - ./scss:/scss
-      - ./package.json:/build/package.json
-      - ./gulpfile.js:/build/gulpfile.js
-      - ./vendor:/vendor-assets
+      - ./_site:/_site
+      - ./gulpfile.js:/_site/gulpfile.js
 #  test:
 #    env_file: ./Docker/.env
 #    build: 

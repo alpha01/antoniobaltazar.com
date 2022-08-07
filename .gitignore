@@ -1,5 +1,6 @@
+_site/gulpfile.js
 tests/*.xml
 .DS_Store
 node_modules
-vendor/*
-!vendor/.keep
+_site/vendor/*
+!_site/vendor/.keep
