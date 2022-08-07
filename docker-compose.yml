@@ -27,7 +27,6 @@ services:
       context: ./Docker/gulp
     volumes:
       - ./_site:/_site
-      - ./gulpfile.js:/_site/gulpfile.js
 #  test:
 #    env_file: ./Docker/.env
 #    build: 

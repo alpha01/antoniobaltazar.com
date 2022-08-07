@@ -1,4 +1,3 @@
-_site/gulpfile.js
 tests/*.xml
 .DS_Store
 node_modules
