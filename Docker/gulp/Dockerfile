@@ -8,4 +8,6 @@ RUN chmod 755 /gulp/*.sh \
   && chmod -R 775 /build \
   && useradd -u 998 -m -g 0 jenkins
 
+WORKDIR /_site
+
 CMD ["/bin/sh", "/gulp/run-gulp-watch.sh"]
